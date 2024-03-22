@@ -11,16 +11,16 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li className="text-lg font-medium text-primary-50 tracking-wider">
-            <NavLink to="/trending-movies">Trending</NavLink>
+            <NavLink to="/trending">Trending</NavLink>
           </li>
           <li className="text-lg font-medium text-primary-50 tracking-wider">
-            <NavLink to="/trending-movies">Upcoming</NavLink>
+            <NavLink to="/upcoming">Upcoming</NavLink>
           </li>
           <li className="text-lg font-medium text-primary-50 tracking-wider">
-            <NavLink to="/trending-movies">Top Rated</NavLink>
+            <NavLink to="/top-rated">Top Rated</NavLink>
           </li>
         </ul>
-        <div className="flex w-1/4 rounded-full backdrop-filter backdrop-blur-lg bg-secondary bg-opacity-75 px-4 py-1.5">
+        <div className="flex gap-2 w-1/4 rounded-full backdrop-filter backdrop-blur-lg bg-secondary bg-opacity-75 px-4 py-1.5">
           <input
             type="text"
             className="bg-transparent outline-none text-white text-lg w-full"
