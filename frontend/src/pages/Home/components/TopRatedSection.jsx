@@ -20,8 +20,8 @@ const TopRatedSection = () => {
   }, []);
 
   return (
-    <section className="container">
-      <h1 className="text-gray tracking-wider py-6">Top Rated</h1>
+    <section className="container py-10">
+      <h1 className="text-gray tracking-wider pb-6">Top Rated</h1>
       <Swiper
         // centeredSlides={false}
         initialSlide={0}
