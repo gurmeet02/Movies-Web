@@ -5,23 +5,12 @@ import "swiper/css";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css/navigation";
 
-const MoviesSection = () => {
-  const [ratedMovies, setRatedMovies] = useState([]);
+const MoviesSection = ({ title, movies }) => {
   const number = 4.5;
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=${
-        import.meta.env.VITE_MOVIES_API_KEY
-      }`
-    )
-      .then((response) => response.json())
-      .then((data) => setRatedMovies(data.results));
-  }, []);
-
   return (
-    <section className="container py-10">
-      <h1 className="text-gray tracking-wider pb-6">Top Rated</h1>
+    <section className="py-8">
+      <h2 className="text-gray tracking-wider pb-6">{title}</h2>
       <Swiper
         initialSlide={0}
         modules={[Navigation, Autoplay]}
@@ -32,15 +21,30 @@ const MoviesSection = () => {
         allowSlideNext={true}
         className="mySwiper"
       >
-        {ratedMovies.length < 0
-          ? null
-          : ratedMovies.map((movie, index) => {
-              return (
-                <SwiperSlide key={index}>
-                  <MovieCard title={movie.title} poster={movie.poster_path} />
-                </SwiperSlide>
-              );
-            })}
+        {movies.length <= 0 || !movies ? (
+          <div className="flex justify-center">
+            <div
+              className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-primary"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                Loading...
+              </span>
+            </div>
+          </div>
+        ) : (
+          movies.map((movie, index) => {
+            return (
+              <SwiperSlide key={index}>
+                <MovieCard
+                  title={movie.title}
+                  poster={movie.poster_path}
+                  releaseDate={movie.release_date}
+                />
+              </SwiperSlide>
+            );
+          })
+        )}
       </Swiper>
     </section>
   );

@@ -17,12 +17,12 @@
     @apply font-semibold;
   }
   h5 {
-    @apply text-xl;
+    @apply text-[1.3rem];
     @apply font-semibold;
   }
   h6 {
     @apply text-lg;
-    @apply font-medium;
+    @apply font-semibold;
   }
 }
 @tailwind components;
