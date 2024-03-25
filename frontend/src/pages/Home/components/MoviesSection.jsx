@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import TopRatedCard from "./TopRatedCard";
+import MovieCard from "../../../components/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css/navigation";
 
-const TopRatedSection = () => {
+const MoviesSection = () => {
   const [ratedMovies, setRatedMovies] = useState([]);
   const number = 4.5;
 
@@ -23,7 +23,6 @@ const TopRatedSection = () => {
     <section className="container py-10">
       <h1 className="text-gray tracking-wider pb-6">Top Rated</h1>
       <Swiper
-        // centeredSlides={false}
         initialSlide={0}
         modules={[Navigation, Autoplay]}
         navigation={true}
@@ -38,10 +37,7 @@ const TopRatedSection = () => {
           : ratedMovies.map((movie, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <TopRatedCard
-                    title={movie.title}
-                    poster={movie.poster_path}
-                  />
+                  <MovieCard title={movie.title} poster={movie.poster_path} />
                 </SwiperSlide>
               );
             })}
@@ -50,4 +46,4 @@ const TopRatedSection = () => {
   );
 };
 
-export default TopRatedSection;
+export default MoviesSection;
