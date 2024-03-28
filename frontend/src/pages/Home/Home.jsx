@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import MoviesSection from "./components/MoviesSection";
+import MoviesSection from "../../components/MoviesSection";
 
 const Home = () => {
-  const [ratedMovies, setRatedMovies] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [ratedMovies, setRatedMovies] = useState({
+    loaded: false,
+    movies: [],
+  });
+  const [popularMovies, setPopularMovies] = useState({
+    loaded: false,
+    movies: [],
+  });
+  const [upcomingMovies, setUpcomingMovies] = useState({
+    loaded: false,
+    movies: [],
+  });
 
   useEffect(() => {
     fetch(
@@ -13,7 +22,12 @@ const Home = () => {
       }`
     )
       .then((response) => response.json())
-      .then((data) => setRatedMovies(data.results));
+      .then((data) => {
+        setRatedMovies({
+          loaded: true,
+          movies: data.results,
+        });
+      });
   }, []);
 
   useEffect(() => {
@@ -23,7 +37,12 @@ const Home = () => {
       }`
     )
       .then((response) => response.json())
-      .then((data) => setPopularMovies(data.results));
+      .then((data) =>
+        setPopularMovies({
+          loaded: true,
+          movies: data.results,
+        })
+      );
   }, []);
 
   useEffect(() => {
@@ -33,15 +52,32 @@ const Home = () => {
       }`
     )
       .then((response) => response.json())
-      .then((data) => setUpcomingMovies(data.results));
+      .then((data) =>
+        setUpcomingMovies({
+          loaded: true,
+          movies: data.results,
+        })
+      );
   }, []);
 
   return (
     <section className="py-6">
       <main className="container flex flex-col gap-10">
-        <MoviesSection title={"Top Rated"} movies={ratedMovies} />
-        <MoviesSection title={"Trending"} movies={popularMovies} />
-        <MoviesSection title={"Upcoming"} movies={upcomingMovies} />
+        <MoviesSection
+          title={"Top Rated"}
+          movies={ratedMovies.movies}
+          loaded={ratedMovies.loaded}
+        />
+        <MoviesSection
+          title={"Popular"}
+          movies={popularMovies.movies}
+          loaded={popularMovies.loaded}
+        />
+        <MoviesSection
+          title={"Upcoming"}
+          movies={upcomingMovies.movies}
+          loaded={upcomingMovies.loaded}
+        />
       </main>
     </section>
   );

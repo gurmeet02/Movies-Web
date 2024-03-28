@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 
 const MoviesCard = ({ title, poster, releaseDate }) => {
-  const [showTitle, setShowTitle] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   return (
-    <main className="w-60 rounded px-2 relative text-center flex justify-center items-center transition-all duration-300 hover:scale-[98%]">
+    <main
+      className="w-60 rounded relative text-center flex justify-center items-center transition-all duration-300 hover:scale-[98%] cursor-pointer"
+      onMouseOver={() => {
+        setShowInfo(true);
+      }}
+      onMouseLeave={() => {
+        setShowInfo(false);
+      }}
+    >
       <h5
         className={`text-white tracking-wider text-center absolute z-10 px-6 duration-300 ${
-          showTitle ? "opacity-100 top-5" : "opacity-0 top-0"
+          showInfo ? "opacity-100 top-5 z-[1]" : "opacity-0 top-0 z-[0]"
         }`}
       >
         {title}
       </h5>
       <h6
         className={`text-white tracking-wider text-center absolute z-10 px-6 duration-300 ${
-          showTitle ? "opacity-100 bottom-5" : "opacity-0 bottom-0"
+          showInfo ? "opacity-100 bottom-5 z-[1]" : "opacity-0 bottom-0 z-[0]"
         }`}
       >
         {releaseDate}
@@ -21,13 +29,10 @@ const MoviesCard = ({ title, poster, releaseDate }) => {
       <img
         src={`https://image.tmdb.org/t/p/original${poster}`}
         alt="image"
-        className="w-full rounded-2xl opacity-80 transition-all duration-300 cursor-pointer hover:brightness-[55%] hover:opacity-60"
-        onMouseOver={() => {
-          setShowTitle(true);
-        }}
-        onMouseLeave={() => {
-          setShowTitle(false);
-        }}
+        className={`w-full rounded-2xl opacity-80 transition-all duration-300 object-cover h-[23rem] ${
+          showInfo ? "brightness-[55%] opacity-60" : "opacity-0 bottom-0 z-[0]"
+        }`}
+        loading="lazy"
       />
     </main>
   );

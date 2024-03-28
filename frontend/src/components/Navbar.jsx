@@ -11,7 +11,7 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li className="text-lg font-medium text-primary-50 tracking-wider">
-            <NavLink to="/top-rated">Top Rated</NavLink>
+            <NavLink to="/tv-shows">TV Shows</NavLink>
           </li>
           <li className="text-lg font-medium text-primary-50 tracking-wider">
             <NavLink to="/trending">Trending</NavLink>
