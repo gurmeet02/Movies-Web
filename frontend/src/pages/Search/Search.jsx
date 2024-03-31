@@ -1,11 +1,11 @@
 import React from "react";
 
-const Upcoming = () => {
+const Search = () => {
   return (
     <section>
-      <h1>upcoming...</h1>
+      <main>s</main>
     </section>
   );
 };
 
-export default Upcoming;
+export default Search;

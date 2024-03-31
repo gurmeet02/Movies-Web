@@ -7,7 +7,6 @@ import "swiper/css/navigation";
 
 const MoviesSection = ({ title, movies, loaded }) => {
   const number = 4.5;
-  console.log(movies);
 
   return (
     <section className="py-8">
