@@ -56,6 +56,7 @@ const MoviesSection = ({ title, movies, loaded }) => {
                           ? movie.first_air_date
                           : movie.release_date
                       }
+                      id={movie.id}
                     />
                   </SwiperSlide>
                 );

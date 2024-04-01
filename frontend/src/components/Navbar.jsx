@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "boxicons";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setMovieName }) => {
+  const [input, setInput] = useState("");
   const navigate = useNavigate();
+  const searchInp = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search?movie=${e.target[0].value}`);
-    console.log(e);
+    if (input.length <= 0) {
+      useNavigate("/movie");
+    } else {
+      navigate(`/search?movie=${input}`);
+      setMovieName(input);
+    }
+    searchInp.current.blur();
+    e.target.reset();
   };
   return (
     <nav className="py-4 container backdrop-filter backdrop-blur-lg bg-transparent bg-opacity-50 shadow-lg">
@@ -30,6 +38,10 @@ const Navbar = () => {
             name="movie"
             className="bg-transparent outline-none text-white text-lg w-full"
             placeholder="Search..."
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+            ref={searchInp}
           />
           <button>
             <i className="bx bx-search text-2xl text-gray hover:text-primary-100 transition-all"></i>

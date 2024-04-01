@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-const MoviesCard = ({ title, poster, releaseDate }) => {
+const MoviesCard = ({ title, poster, releaseDate, id }) => {
   const [showInfo, setShowInfo] = useState(false);
+  const { movieId } = useParams();
+  const navigate = useNavigate();
   return (
     <main
       className="w-60 rounded relative text-center flex justify-center items-center transition-all duration-300 hover:scale-[98%] cursor-pointer"
@@ -10,6 +13,9 @@ const MoviesCard = ({ title, poster, releaseDate }) => {
       }}
       onMouseLeave={() => {
         setShowInfo(false);
+      }}
+      onClick={() => {
+        navigate(`/movie/${id}`);
       }}
     >
       <h5
