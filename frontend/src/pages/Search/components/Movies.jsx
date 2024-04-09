@@ -1,5 +1,5 @@
 import React from "react";
-import MoviesCard from "../../../components/MovieCard";
+import MoviesCard from "../../Home/components/MovieCard";
 
 const Movies = ({ movies }) => {
   console.log(movies);

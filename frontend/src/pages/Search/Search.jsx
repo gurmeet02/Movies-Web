@@ -23,20 +23,37 @@ const Search = ({ movieName }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const link = document.querySelector(".active");
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movieName}&api_key=${
-        import.meta.env.VITE_MOVIES_API_KEY
-      }&page=${pageNo}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies({
-          loaded: true,
-          movies: data.results,
+    if (link.classList.contains("home")) {
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${movieName}&api_key=${
+          import.meta.env.VITE_MOVIES_API_KEY
+        }&page=${pageNo}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setMovies({
+            loaded: true,
+            movies: data.results,
+          });
+          setTotalPages(data.total_pages);
         });
-        setTotalPages(data.total_pages);
-      });
+    } else {
+      fetch(
+        `https://api.themoviedb.org/3/search/tv?query=${movieName}&api_key=${
+          import.meta.env.VITE_MOVIES_API_KEY
+        }&page=${pageNo}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setMovies({
+            loaded: true,
+            movies: data.results,
+          });
+          setTotalPages(data.total_pages);
+        });
+    }
   }, [pageNo, movieName]);
   return (
     <section className="py-8">

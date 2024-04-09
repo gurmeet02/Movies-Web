@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MoviesSection from "../../components/MoviesSection";
+import MoviesSection from "./components/MoviesSection";
 
 const Home = () => {
   const [ratedMovies, setRatedMovies] = useState({

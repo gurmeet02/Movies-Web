@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MoviesSection from "../../components/MoviesSection";
+import TVShowsSection from "./components/TVShowsSection";
 
 const TVShows = () => {
   const [ratedShows, setRatedShows] = useState({
@@ -63,20 +63,20 @@ const TVShows = () => {
   return (
     <section className="container py-6">
       <main className="flex flex-col gap-10">
-        <MoviesSection
+        <TVShowsSection
           title={"Top Rated"}
           loaded={ratedShows.loaded}
-          movies={ratedShows.shows}
+          shows={ratedShows.shows}
         />
-        <MoviesSection
+        <TVShowsSection
           title={"Popular"}
           loaded={popularShows.loaded}
-          movies={popularShows.shows}
+          shows={popularShows.shows}
         />
-        <MoviesSection
+        <TVShowsSection
           title={"Airing Today"}
           loaded={upcomingShows.loaded}
-          movies={upcomingShows.shows}
+          shows={upcomingShows.shows}
         />
       </main>
     </section>

@@ -23,10 +23,14 @@ const Navbar = ({ setMovieName }) => {
       <main className="flex justify-between items-center w-full">
         <ul className="flex items-center gap-12">
           <li className="text-lg font-medium text-primary-50 tracking-wider">
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" className="home">
+              Home
+            </NavLink>
           </li>
           <li className="text-lg font-medium text-primary-50 tracking-wider">
-            <NavLink to="/tv-shows">TV Shows</NavLink>
+            <NavLink to="/tv-shows" className="tv-shows">
+              TV Shows
+            </NavLink>
           </li>
         </ul>
         <form

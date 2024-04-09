@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import TVShows from "./pages/TVShows/TVShows";
 import Search from "./pages/Search/Search";
 import Movie from "./pages/Movie/Movie";
+import TVShow from "./pages/TVShow/TVShow";
 import { useState } from "react";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/tv-shows" element={<TVShows />} />
           <Route path={`/search`} element={<Search movieName={movieName} />} />
           <Route path={`/movie/:movieId`} element={<Movie />} />
+          <Route path={`/tv/:showId`} element={<TVShow />} />
         </Routes>
       </BrowserRouter>
     </>
