@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Pagination from "./components/Pagination";
 import Movies from "./components/Movies";
 
-const Search = ({ movieName }) => {
+const Search = ({ movieName, searchTV, setMovieName }) => {
   const [movies, setMovies] = useState({
     loaded: false,
     movies: [],
@@ -23,9 +23,22 @@ const Search = ({ movieName }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const link = document.querySelector(".active");
   useEffect(() => {
-    if (link.classList.contains("home")) {
+    if (searchTV) {
+      fetch(
+        `https://api.themoviedb.org/3/search/tv?query=${movieName}&api_key=${
+          import.meta.env.VITE_MOVIES_API_KEY
+        }&page=${pageNo}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setMovies({
+            loaded: true,
+            movies: data.results,
+          });
+          setTotalPages(data.total_pages);
+        });
+    } else if (searchTV === false) {
       fetch(
         `https://api.themoviedb.org/3/search/movie?query=${movieName}&api_key=${
           import.meta.env.VITE_MOVIES_API_KEY
@@ -40,19 +53,7 @@ const Search = ({ movieName }) => {
           setTotalPages(data.total_pages);
         });
     } else {
-      fetch(
-        `https://api.themoviedb.org/3/search/tv?query=${movieName}&api_key=${
-          import.meta.env.VITE_MOVIES_API_KEY
-        }&page=${pageNo}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setMovies({
-            loaded: true,
-            movies: data.results,
-          });
-          setTotalPages(data.total_pages);
-        });
+      return null;
     }
   }, [pageNo, movieName]);
   return (

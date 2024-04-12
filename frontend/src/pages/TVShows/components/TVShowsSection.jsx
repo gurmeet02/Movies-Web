@@ -38,16 +38,56 @@ const TVShowsSection = ({ title, shows, loaded }) => {
           initialSlide={0}
           modules={[Navigation, Autoplay]}
           navigation={true}
-          spaceBetween={120}
+          spaceBetween={32}
           slidesPerView={number}
           loop={true}
           className="mySwiper"
+          breakpoints={{
+            0: {
+              width: 0,
+              slidesPerView: 1.1,
+              centeredSlides: true,
+            },
+            360: {
+              width: 360,
+              slidesPerView: 1.4,
+              centeredSlides: true,
+            },
+            480: {
+              width: 480,
+              slidesPerView: 2,
+              centeredSlides: false,
+            },
+            640: {
+              width: 640,
+              slidesPerView: 2.75,
+              centeredSlides: false,
+            },
+            900: {
+              width: 900,
+              slidesPerView: 3.75,
+              centeredSlides: false,
+            },
+            1080: {
+              width: 1080,
+              slidesPerView: 4.25,
+              centeredSlides: false,
+            },
+            1440: {
+              width: 1440,
+              slidesPerView: 5,
+              centeredSlides: false,
+            },
+          }}
         >
           {shows.length <= 0
             ? null
             : shows.map((show, index) => {
                 return (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide
+                    key={index}
+                    className="flex justify-center items-center"
+                  >
                     <TVShowCard
                       title={!show.title ? show.name : show.title}
                       poster={show.poster_path}

@@ -7,7 +7,7 @@ const TVShowCard = ({ title, poster, releaseDate, id }) => {
   const navigate = useNavigate();
   return (
     <main
-      className="w-60 rounded relative text-center flex justify-center items-center transition-all duration-300 hover:scale-[98%] cursor-pointer"
+      className="rounded relative text-center flex justify-center items-center transition-all duration-300 hover:scale-[98%] cursor-pointer"
       onMouseOver={() => {
         setShowInfo(true);
       }}
@@ -35,7 +35,7 @@ const TVShowCard = ({ title, poster, releaseDate, id }) => {
       <img
         src={`https://image.tmdb.org/t/p/original${poster}`}
         alt="image"
-        className={`w-full rounded-2xl opacity-80 transition-all duration-300 object-cover h-[23rem] ${
+        className={`w-full rounded-2xl opacity-80 transition-all duration-300 object-cover ${
           showInfo ? "brightness-[55%] opacity-60" : "opacity-0 bottom-0 z-[0]"
         }`}
         loading="lazy"
