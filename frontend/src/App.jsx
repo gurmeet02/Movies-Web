@@ -5,6 +5,8 @@ import TVShows from "./pages/TVShows/TVShows";
 import Search from "./pages/Search/Search";
 import Movie from "./pages/Movie/Movie";
 import TVShow from "./pages/TVShow/TVShow";
+import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/Login/Login";
 import { useState } from "react";
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
           setMovieName={setMovieName}
           setSearchTV={setSearchTV}
           searchTV={searchTV}
+          movieName={movieName}
         />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -31,6 +34,8 @@ function App() {
               />
             }
           />
+          <Route path={`/sign-up`} element={<SignUp />} />
+          <Route path={`/login`} element={<Login />} />
           <Route path={`/movie/:movieId`} element={<Movie />} />
           <Route path={`/tv/:showId`} element={<TVShow />} />
         </Routes>

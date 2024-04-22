@@ -3,19 +3,21 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "boxicons";
 
-const Navbar = ({ setMovieName, setSearchTV, searchTV }) => {
+const Navbar = ({ setMovieName, setSearchTV, searchTV, movieName }) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-  const [input, setInput] = useState("");
   const navigate = useNavigate();
-  const searchInp = useRef(null);
+  const searchInp = document.getElementById("search_inp");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.length <= 0) {
-      navigate("/movie");
+    if (movieName.length <= 0) {
+      navigate("/");
     } else {
-      navigate(`/search?movie=${input}`);
-      setMovieName(input);
+      if (searchTV === false) {
+        navigate(`/search?movie=${movieName}`);
+      } else {
+        navigate(`/search?tv=${movieName}`);
+      }
     }
     searchInp.current.blur();
     e.target.reset();
@@ -44,7 +46,7 @@ const Navbar = ({ setMovieName, setSearchTV, searchTV }) => {
               className="bg-transparent outline-none text-white text-lg w-full"
               placeholder="Search..."
               onChange={(e) => {
-                setInput(e.target.value);
+                setMovieName(e.target.value);
               }}
               ref={searchInp}
             />
@@ -95,9 +97,9 @@ const Navbar = ({ setMovieName, setSearchTV, searchTV }) => {
           className="bg-transparent outline-none text-white text-lg w-full"
           placeholder="Search..."
           onChange={(e) => {
-            setInput(e.target.value);
+            setMovieName(e.target.value);
           }}
-          ref={searchInp}
+          id="search_inp"
         />
         <div className="flex gap-2">
           <button type="submit">
@@ -107,6 +109,7 @@ const Navbar = ({ setMovieName, setSearchTV, searchTV }) => {
             type="button"
             onClick={() => {
               setSearchTV(!searchTV);
+              setMovieName("");
             }}
           >
             {searchTV ? (

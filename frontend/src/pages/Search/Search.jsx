@@ -82,7 +82,7 @@ const Search = ({ movieName, searchTV, setMovieName }) => {
         </div>
       ) : (
         <main>
-          <Movies movies={movies.movies} />
+          <Movies movies={movies.movies} searchTV={searchTV} />
           <Pagination
             pageNo={pageNo}
             nextPage={nextPage}

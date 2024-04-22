@@ -4,7 +4,9 @@ const MainSection = ({ show }) => {
   console.log(show);
   return (
     <section>
-      {!show ? null : (
+      {!show || show === undefined || show === null ? (
+        <div>Nothing.</div>
+      ) : (
         <main>
           <div className="flex">
             <img
@@ -18,18 +20,21 @@ const MainSection = ({ show }) => {
                 {show.overview}
               </p>
               <h6 className="pt-8 text-white tracking-wide font-medium">
-                Release Date: {show.first_air_date}
+                <span className="font-semibold">Release Date: </span>{" "}
+                {show.first_air_date}
               </h6>
               <h6 className="py-4 text-white tracking-wide font-medium">
-                Genres:{" "}
-                {show.genres.map((genre, index) => {
-                  return (
-                    <span key={index}>
-                      {genre.name}
-                      {index != show.genres.length - 1 ? ", " : ""}
-                    </span>
-                  );
-                })}
+                <span className="font-semibold">Genres: </span>
+                {show.genres
+                  ? show.genres.map((genre, index) => {
+                      return (
+                        <span key={index}>
+                          {genre.name}
+                          {index != show.genres.length - 1 ? ", " : ""}
+                        </span>
+                      );
+                    })
+                  : null}
               </h6>
             </div>
           </div>
