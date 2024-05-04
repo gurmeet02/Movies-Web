@@ -8,12 +8,13 @@ import TVShow from "./pages/TVShow/TVShow";
 import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
 import { useState } from "react";
+import UserContext from "./context/user-context";
 
 function App() {
   const [movieName, setMovieName] = useState("");
   const [searchTV, setSearchTV] = useState(false);
   return (
-    <>
+    <UserContext.Provider value={{ name: "Gurmeet Kumar" }}>
       <BrowserRouter>
         <Navbar
           setMovieName={setMovieName}
@@ -40,7 +41,7 @@ function App() {
           <Route path={`/tv/:showId`} element={<TVShow />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </UserContext.Provider>
   );
 }
 

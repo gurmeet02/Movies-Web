@@ -5,11 +5,21 @@ const MainSection = ({ movie }) => {
   const addMovieToList = async (e) => {
     e.preventDefault();
     try {
-      let response = await fetch("http://localhost:8080/list/add-movie", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(movie),
-      });
+      let response = await fetch(
+        `http://localhost:3000/list/add-movie/${movie.id}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: movie.title,
+            movieId: movie.id,
+            releaseDate: movie.release_date,
+            genres: movie.genres,
+            posterPathId: movie.poster_path,
+          }),
+        }
+      );
+      console.log("hello");
       const data = await response.json();
       console.log(data);
     } catch (error) {
@@ -50,7 +60,7 @@ const MainSection = ({ movie }) => {
                     : null}
                 </h6>
                 <form
-                  action="http://localhost:3000/list/add-movie"
+                  action="/"
                   method="POST"
                   className="pt-8"
                   onSubmit={addMovieToList}

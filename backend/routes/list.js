@@ -6,6 +6,6 @@ const listControllers = require("../controllers/list");
 
 router.get("/", listControllers.getList);
 
-router.post("/add-movie", listControllers.postList);
+router.post("/add-movie/:id", listControllers.postMovie);
 
 module.exports = router;

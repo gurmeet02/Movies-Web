@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "boxicons";
+import UserModal from "./UserModal";
 
 const Navbar = ({ setMovieName, setSearchTV, searchTV, movieName }) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showUserModal, setShowUserModal] = useState(false);
 
   const navigate = useNavigate();
   const searchInp = document.getElementById("search_inp");
@@ -69,7 +71,28 @@ const Navbar = ({ setMovieName, setSearchTV, searchTV, movieName }) => {
             </div>
           </form>
           <div>
-            <i className="bx bx-user-circle text-3xl text-gray hover:text-primary-100 transition-all cursor-pointer"></i>
+            <i
+              className="bx bx-user-circle text-3xl text-gray hover:text-primary-100 transition-all cursor-pointer"
+              onMouseEnter={() => {
+                setShowUserModal(true);
+              }}
+              onMouseLeave={() => {
+                setShowUserModal(false);
+              }}
+            ></i>
+          </div>
+          <div
+            className={`${
+              showUserModal ? "" : "hidden"
+            } absolute top-12 pt-8 w-1/5 right-12`}
+            onMouseEnter={() => {
+              setShowUserModal(true);
+            }}
+            onMouseLeave={() => {
+              setShowUserModal(false);
+            }}
+          >
+            <UserModal />
           </div>
           <button
             onClick={() => {
